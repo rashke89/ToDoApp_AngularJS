@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="toDoApp">
+<head>
+	<meta charset="UTF-8">
+	<title>to do app</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<script type="text/javascript" src="app.js"></script>
+	<script type="text/javascript" src="controllers/mainController.js"></script>
+</head>
+<body ng-controller="mainCtrl">
+	<nav class="navbar navbar-default">
+		<a href="#" class="navbar-brand">To Do App</a>
+	</nav>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-10 col-lg-offset-1">
+				<div class="input-group">
+					<input type="text" class="form-control"  ng-model="message">
+					<span class="input-group-btn">
+						<button class="btn btn-primary" ng-click="addTask()">Add</button>
+					</span>
+				</div><br>
+				<div class="col-lg-4" ng-repeat="toDo in toDos track by $index">
+					<!-- ng-class = objekat == prvo je KLASA, drugo je expression(tru/false) -->
+					<div class="panel panel-default" ng-class="{'done' : toDo.done}">
+						<div class="panel-heading">
+							<h3>To Do No: {{$index+1}}</h3>
+						</div>
+						<div class="panel-body text-center">
+							<h2>{{toDo.message}}</h2>
+						</div>
+						<div class="panel-footer text-right">
+							<button class="btn btn-primary" ng-click="markAsDone($index)">Mark as done</button>
+							<button class="btn btn-warning" ng-click="del($index)">Delete</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
